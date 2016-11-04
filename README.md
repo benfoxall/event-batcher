@@ -1,8 +1,6 @@
-# event-utils
-A few mini event helpers
+# event-batcher
 
-
-## Stream Batcher
+demo: http://benjaminbenben.com/event-batcher/examples/mouse.html
 
 This gathers events and broadcasts them in batches with relative timestamps, allowing them to be unpacked and replayed in a smooth way.
 
