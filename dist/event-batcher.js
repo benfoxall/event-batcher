@@ -1,5 +1,8 @@
-(function (exports) {
-'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (factory((global.eventBatcher = global.eventBatcher || {})));
+}(this, (function (exports) { 'use strict';
 
 // get some sort of timestamp
 var perf = window.performance
@@ -65,4 +68,6 @@ var decode = function (millis) {
 exports.encode = encode;
 exports.decode = decode;
 
-}((this.eventBatcher = this.eventBatcher || {})));
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));

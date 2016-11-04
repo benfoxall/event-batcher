@@ -2,7 +2,10 @@
   "name": "event-batcher",
   "version": "1.0.0",
   "description": "A thing for batching events smoothly",
-  "main": "index.js",
+  "main": "dist/event-batcher.js",
+
+  "module": "index",
+  "jsnext:main": "index",
   "scripts": {
     "build": "rollup -c"
   },
