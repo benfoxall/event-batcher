@@ -1,9 +1,8 @@
 {
   "name": "event-batcher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A thing for batching events smoothly",
   "main": "dist/event-batcher.js",
-
   "module": "index",
   "jsnext:main": "index",
   "scripts": {
