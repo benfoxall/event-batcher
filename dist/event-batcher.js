@@ -5,10 +5,17 @@
 }(this, (function (exports) { 'use strict';
 
 // get some sort of timestamp
-var perf = window.performance
-var now = (perf && perf.now && perf.now.bind(perf))
-            || Date.now
-            || (function (_) { return new Date().getTime(); })
+var now = (function(){
+
+  // node
+  if(typeof window == 'undefined') { return Date.now }
+
+  var perf = window.performance
+  return (perf && perf.now && perf.now.bind(perf))
+    || Date.now
+    || (function (_) { return new Date().getTime(); })
+
+})()
 
 
 var encode = function (millis) {
