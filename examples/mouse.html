@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>mouse example</title>
+    <style media="screen">
+    body, html {margin: 0}
+    div {position: absolute; font-family: sans-serif; padding: 2em}
+    </style>
+  </head>
+  <body>
+    <div id="s"></div>
+    <canvas id="c"></canvas>
+    <script src="../dist/event-batcher.js"></script>
+    <script type="text/javascript">
+
+      var encode = eventBatcher.encode(250)
+      var decode = eventBatcher.decode()
+
+      // handle a batch of events
+      encode.handle(b => {
+        // this will only get called every 250ms (handy for limiting
+        // your client event messages)
+        decode(b)
+      })
+
+
+      addEventListener('mousemove', e => encode({x:e.clientX, y: e.clientY}) )
+
+      decode.handle( d => draw(d.x,d.y) )
+
+
+
+
+
+      // drawing & stats
+
+      var stats = {messages: 0, events: 0}
+      c.width = window.innerWidth * 2
+      c.height = window.innerHeight * 2
+      var ctx = c.getContext('2d')
+
+      var requested, cx, cy
+
+      function draw(x,y) {
+        cx = x; cy = y
+
+        if(!requested){
+          requested = true
+          requestAnimationFrame(render)
+        }
+      }
+
+      function render() {
+        requested = false
+        if(!ctx) return
+        ctx.clearRect(0,0,c.width,c.height)
+        ctx.beginPath()
+        ctx.arc(cx,cy,5,0,Math.PI*2)
+        ctx.fill()
+        s.innerText = `Messages: ${stats.messages}, Events: ${stats.events}`
+      }
+
+
+      decode.handle(d => stats.events ++ )
+
+      encode.handle(d => stats.messages ++ )
+
+
+    </script>
+  </body>
+</html>
