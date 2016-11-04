@@ -18,16 +18,16 @@
       var decode = eventBatcher.decode()
 
       // handle a batch of events
-      encode.handle(b => {
+      encode.handle(function (b) {
         // this will only get called every 250ms (handy for limiting
         // your client event messages)
         decode(b)
       })
 
 
-      addEventListener('mousemove', e => encode({x:e.clientX, y: e.clientY}) )
+      addEventListener('mousemove', function (e) { return encode({x:e.clientX, y: e.clientY}); } )
 
-      decode.handle( d => draw(d.x,d.y) )
+      decode.handle( function (d) { return draw(d.x,d.y); } )
 
 
 
@@ -58,13 +58,13 @@
         ctx.beginPath()
         ctx.arc(cx,cy,5,0,Math.PI*2)
         ctx.fill()
-        s.innerText = `Messages: ${stats.messages}, Events: ${stats.events}`
+        s.innerText = "Messages: " + (stats.messages) + ", Events: " + (stats.events)
       }
 
 
-      decode.handle(d => stats.events ++ )
+      decode.handle(function (d) { return stats.events ++; } )
 
-      encode.handle(d => stats.messages ++ )
+      encode.handle(function (d) { return stats.messages ++; } )
 
 
     </script>
