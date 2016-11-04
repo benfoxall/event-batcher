@@ -1,6 +1,6 @@
 {
   "name": "event-batcher",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A thing for batching events smoothly",
   "main": "dist/event-batcher.js",
   "module": "index",
