@@ -6,8 +6,8 @@ This gathers events and broadcasts them in batches with relative timestamps, all
 
 ```js
 
-var encode = streamBatch.encode(100)
-var decode = streamBatch.decode(100)
+var encode = eventBatcher.encode(100)
+var decode = eventBatcher.decode()
 
 // handle a batch of events
 encode.handle(b => {
