@@ -8,10 +8,8 @@
   "license": "MIT",
   "homepage": "https://github.com/benfoxall/event-batcher",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "**/*",
+    "!/dist/*",
+    "!LICENCE",
   ]
 }
